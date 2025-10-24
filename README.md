@@ -20,12 +20,11 @@ Este projeto foi desenvolvido como parte do desafio **"Entendendo um Ransomware 
 ## 📁 Estrutura do Projeto
 
 ```
-.
 ├── encrypter.py        # Script para criptografar o arquivo
 ├── decrypter.py        # Script para descriptografar o arquivo
 ├── teste.txt           # Arquivo de exemplo (criado manualmente)
 ├── README.md           # Este arquivo
-└── /images/            # (Opcional) Capturas de tela
+└── /images/            # Capturas de tela
 ```
 
 ---
