@@ -1,6 +1,6 @@
 # Ransomware em Python 🔒
 
-Este projeto foi desenvolvido como parte do desafio **"Entendendo um Ransomware na Prática com Python"**, proposto pela **[Digital Innovation One (DIO)](https://digitalinnovation.one/)**. O objetivo é compreender, de forma educacional, como funciona um ransomware simples utilizando criptografia simétrica.
+Este projeto foi desenvolvido como parte do desafio **"Entendendo um Ransomware na Prática com Python"**. O objetivo é compreender, de forma educacional, como funciona um ransomware simples utilizando criptografia simétrica.
 
 > ⚠️ **Este código é exclusivamente para fins educacionais e de estudo.**  
 > **Nunca utilize este tipo de ferramenta em sistemas reais.**
@@ -20,11 +20,10 @@ Este projeto foi desenvolvido como parte do desafio **"Entendendo um Ransomware 
 ## 📁 Estrutura do Projeto
 
 ```
-├── encrypter.py        # Script para criptografar o arquivo
-├── decrypter.py        # Script para descriptografar o arquivo
-├── teste.txt           # Arquivo de exemplo (criado manualmente)
-├── README.md           # Este arquivo
-└── /images/            # Capturas de tela
+├── encrypter.py     
+├── decrypter.py        
+├── teste.txt           
+└── README.md           
 ```
 
 ---
